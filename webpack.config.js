@@ -32,6 +32,9 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     publicPath: "/",
   },
+  module: {
+    rules: [{ test: /\.html$/, use: ["html-loader"] }],
+  },
   devServer: {
     contentBase: "./dist",
     compress: true,

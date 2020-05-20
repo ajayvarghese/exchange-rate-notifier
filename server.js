@@ -4,6 +4,7 @@ const webpackDevMiddleware = require("webpack-dev-middleware");
 const cors = require("cors");
 var bodyParser = require("body-parser"); //used to extract the body from the incoming requests
 const app = express();
+const webpush = require("web-push");
 
 app.use(cors());
 // const config = require("./webpack.config.js");
@@ -34,8 +35,25 @@ const saveToDatabase = async (subscription) => {
   dummyDb.subscription = subscription;
 };
 
+const vapidKeys = {
+  publicKey: env.VAPID_PUBLIC_KEY,
+  privateKey: env.VAPID_PRIVATE_KEY,
+};
+
+webpush.setVapidDetails(
+  `mailto:${env.EMAIL}`,
+  vapidKeys.publicKey,
+  vapidKeys.privateKey
+);
+
+//function to send the notification to the subscribed device
+const sendNotification = (subscription, dataToSend = "") => {
+  webpush.sendNotification(subscription, dataToSend);
+};
+
 app.post("/save-subscription", async (req, res) => {
   const subscription = req.body;
+  console.log("subscription", subscription);
   await saveToDatabase(subscription); //Method to save the subscription to Database
   res.json({ message: "success", subscription });
 });
@@ -46,11 +64,18 @@ app.use("/eur-to-inr", async function (req, res) {
   res.json(data);
 });
 
+app.get("/send-notification", (req, res) => {
+  const subscription = dummyDb.subscription; //get subscription from your databse here.
+  const message = "Hello World";
+  sendNotification(subscription, message);
+  res.json({ message: "message sent" });
+});
+
 app.use("/", (req, res) => {
   res.json({ message: "Server says Hello" });
 });
 
 // Serve the files on port 3000.
-app.listen(3000, function () {
-  console.log("Server running on port 3000!\n");
+app.listen(env.port, function () {
+  console.log(`Server running on port ${env.port}!\n`);
 });

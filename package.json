@@ -1,5 +1,5 @@
 {
-  "name": "webpack-setup",
+  "name": "exchange-rate-notifier",
   "version": "1.0.0",
   "description": "Simple webpack setup",
   "main": "index.js",
@@ -27,6 +27,9 @@
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "node-fetch": "^2.6.0"
+    "html-loader": "^1.1.0",
+    "knockout": "^3.5.1",
+    "node-fetch": "^2.6.0",
+    "web-push": "^3.4.4"
   }
 }
