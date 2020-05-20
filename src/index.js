@@ -35,9 +35,10 @@ const check = () => {
 const registerServiceWorker = async () => {
   try {
     const swRegistration = await navigator.serviceWorker.register("/sw.js");
-    console.log("Successfully registered service worker", reg);
+    console.log("Successfully registered service worker", swRegistration);
     return swRegistration;
   } catch (e) {
+    console.error(e);
     throw new Error("Error whilst registering Service worker ");
   }
 };
@@ -57,6 +58,6 @@ if ("serviceWorker" in navigator && PROD) {
   check();
   window.addEventListener("load", async () => {
     const swRegistration = await registerServiceWorker();
-    // const permission = await requestNotificationPermission();
+    const permission = await requestNotificationPermission();
   });
 }

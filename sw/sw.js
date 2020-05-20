@@ -38,32 +38,32 @@ self.addEventListener("install", async function (e) {
   );
 });
 
-// self.addEventListener("activate", async () => {
-//   // This will be called only once when the service worker is activated.
-//   try {
-//     const applicationServerKey = urlB64ToUint8Array(
-//       "BNhheX-eh8f2ZVJ7VhyDyiQ5uMG0F2Uw6CD5FxOP4RW9VSyeSv2OZUwHCRmEjwMoUanntbqpkKVvGI0fP38kQnU"
-//     );
-//     const options = { applicationServerKey, userVisibleOnly: true };
-//     const subscription = await self.registration.pushManager.subscribe(options);
-//     console.log(JSON.stringify(subscription));
-//   } catch (err) {
-//     console.log("Error", err);
-//   }
-// });
+self.addEventListener("activate", async () => {
+  // This will be called only once when the service worker is activated.
+  try {
+    const applicationServerKey = urlB64ToUint8Array(
+      "BNhheX-eh8f2ZVJ7VhyDyiQ5uMG0F2Uw6CD5FxOP4RW9VSyeSv2OZUwHCRmEjwMoUanntbqpkKVvGI0fP38kQnU"
+    );
+    const options = { applicationServerKey, userVisibleOnly: true };
+    const subscription = await self.registration.pushManager.subscribe(options);
+    console.log(JSON.stringify(subscription));
+  } catch (err) {
+    console.log("Error", err);
+  }
+});
 
-// self.addEventListener("push", function (event) {
-//   const title = "Get Started With Workbox";
-//   if (event.data) {
-//     console.log("Push event!! ", event.data.text());
-//     const options = {
-//       body: event.data.text(),
-//     };
-//     event.waitUntil(self.registration.showNotification(title, options));
-//   } else {
-//     console.log("Push event but no data");
-//   }
-// });
+self.addEventListener("push", function (event) {
+  const title = "Get Started With Workbox";
+  if (event.data) {
+    console.log("Push event!! ", event.data.text());
+    const options = {
+      body: event.data.text(),
+    };
+    event.waitUntil(self.registration.showNotification(title, options));
+  } else {
+    console.log("Push event but no data");
+  }
+});
 
 // when the browser fetches a URL…
 self.addEventListener("fetch", function (event) {
