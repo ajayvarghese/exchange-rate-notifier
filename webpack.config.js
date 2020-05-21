@@ -14,6 +14,7 @@ const plugins = [
   new CopyPlugin([
     { from: "images", to: "images" },
     { from: "manifest.json", to: "manifest.json" },
+    { from: "public", to: "public" },
   ]),
   new InjectManifest({
     swSrc: "./src/src-sw.js",

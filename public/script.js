@@ -9,12 +9,14 @@ const checkSupport = () => {
 
 const registerServiceWorker = async () => {
   try {
-    const swRegistration = await navigator.serviceWorker.register("/sw.js");
-    console.log("Successfully registered service worker", swRegistration);
+    const swRegistration = await navigator.serviceWorker.register(
+      "/public/pushNotificationWorker.js"
+    );
+    console.log("Successfully registered push service worker", swRegistration);
     return swRegistration;
   } catch (e) {
     console.error(e);
-    throw new Error("Error whilst registering Service worker ");
+    throw new Error("Error whilst registering Push Service worker ");
   }
 };
 
@@ -25,7 +27,7 @@ const requestNotificationPermission = async () => {
   }
 };
 
-export const register = () => {
+const register = () => {
   if ("serviceWorker" in navigator) {
     checkSupport();
     window.addEventListener("load", async () => {
@@ -34,3 +36,5 @@ export const register = () => {
     });
   }
 };
+
+register();

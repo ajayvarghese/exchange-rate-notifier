@@ -28,17 +28,19 @@ const saveSubscription = async (subscription) => {
 
 // During the installation phase, you'll usually want to cache static assets.
 self.addEventListener("install", async function (e) {
+  console.log("INSTALLING...");
   // Once the service worker is installed, go ahead and fetch the resources to make this work offline.
-  e.waitUntil(
-    caches.open(cacheName).then(function (cache) {
-      return cache.addAll(assets).then(function () {
-        self.skipWaiting();
-      });
-    })
-  );
+  //   e.waitUntil(
+  //     caches.open(cacheName).then(function (cache) {
+  //       return cache.addAll(assets).then(function () {
+  //         self.skipWaiting();
+  //       });
+  //     })
+  //   );
 });
 
 self.addEventListener("activate", async () => {
+  console.log("ACTIVATING...");
   // This will be called only once when the service worker is activated.
   try {
     const applicationServerKey = urlB64ToUint8Array(
@@ -72,15 +74,16 @@ const showLocalNotification = (title, body, swRegistration) => {
 
 // when the browser fetches a URL…
 self.addEventListener("fetch", function (event) {
+  console.log("FETCHING", event);
   // … either respond with the cached object or go ahead and fetch the actual URL
-  event.respondWith(
-    caches.match(event.request).then(function (response) {
-      if (response) {
-        // retrieve from cache
-        return response;
-      }
-      // fetch as normal
-      return fetch(event.request);
-    })
-  );
+  //   event.respondWith(
+  //     caches.match(event.request).then(function (response) {
+  //       if (response) {
+  //         // retrieve from cache
+  //         return response;
+  //       }
+  //       // fetch as normal
+  //       return fetch(event.request);
+  //     })
+  //   );
 });

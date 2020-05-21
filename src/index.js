@@ -1,4 +1,3 @@
-import { register } from "./registerServiceWorker";
 import { URLS } from "./constants";
 import { fetchData } from "./request";
 import "./model";
@@ -12,7 +11,3 @@ async function init() {
 }
 
 window.onload = init;
-
-if (PROD) {
-  register();
-}
