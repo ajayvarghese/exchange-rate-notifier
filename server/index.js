@@ -1,6 +1,4 @@
 const express = require("express");
-const webpack = require("webpack");
-const webpackDevMiddleware = require("webpack-dev-middleware");
 const cors = require("cors");
 var bodyParser = require("body-parser"); //used to extract the body from the incoming requests
 require("dotenv").config();
@@ -28,21 +26,13 @@ var j = schedule.scheduleJob(rule, async function (yo) {
 
 setup();
 app.use(cors());
-// const config = require("./webpack.config.js");
-// const compiler = webpack(config);
 
 const { PORT } = process.env;
 
 // It extracts the data out of the request headers like the form data, etc,.
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-// Tell express to use the webpack-dev-middleware and use the webpack.config.js
-// configuration file as a base.
-// app.use(
-//   webpackDevMiddleware(compiler, {
-//     publicPath: config.output.publicPath,
-//   })
-// );
+
 const ENDPOINTS = {
   SAVE_SUBSCRIPTION: "/save-subscription",
   EUR_INR: "/eur-to-inr",
