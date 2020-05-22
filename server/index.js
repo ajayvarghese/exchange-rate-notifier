@@ -31,7 +31,7 @@ app.use(cors());
 // const config = require("./webpack.config.js");
 // const compiler = webpack(config);
 
-const { env } = process;
+const { PORT } = process.env;
 
 // It extracts the data out of the request headers like the form data, etc,.
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -63,6 +63,6 @@ app.get(ENDPOINTS.SEND_NOTIFICATION, services.SEND_NOTIFICATION);
 app.use(ENDPOINTS.HOME, services.HOME);
 
 // Serve the files on port 3000.
-app.listen(env.PORT, function () {
-  console.log(`Server running on port ${env.PORT}!\n`);
+app.listen(PORT, function () {
+  console.log(`Server running on port ${PORT}!\n`);
 });
