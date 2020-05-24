@@ -23,7 +23,10 @@ const registerServiceWorker = async () => {
 const requestNotificationPermission = async () => {
   const permission = await window.Notification.requestPermission(); // 'granted' | 'default' | 'denied'
   if (permission !== "granted") {
-    throw new Error("Permission not granted for Notification");
+    console.error(
+      "[Error]: Permission not granted for Notification, State: ",
+      permission
+    );
   }
 };
 
