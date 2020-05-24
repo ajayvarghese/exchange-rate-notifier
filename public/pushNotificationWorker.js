@@ -1,5 +1,6 @@
 // Use a cacheName for cache versioning
 var cacheName = "v1:static";
+const API_ENDPOINT = "https://exhange-rate-notifier.netlify.app";
 
 const urlB64ToUint8Array = (base64String) => {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
@@ -15,7 +16,7 @@ const urlB64ToUint8Array = (base64String) => {
 };
 
 const saveSubscription = async (subscription) => {
-  const SERVER_URL = "http://localhost:3000/save-subscription";
+  const SERVER_URL = `${API_ENDPOINT}/save-subscription`;
   const response = await fetch(SERVER_URL, {
     method: "post",
     headers: {
