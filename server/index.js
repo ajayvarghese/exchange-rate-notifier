@@ -53,6 +53,14 @@ app.get(ENDPOINTS.SEND_NOTIFICATION, services.SEND_NOTIFICATION);
 app.use(ENDPOINTS.HOME, services.HOME);
 
 // Serve the files on port 3000.
-app.listen(PORT, function () {
-  console.log(`Server running on port ${PORT}!\n`);
-});
+app
+  .listen(PORT, function (error) {
+    if(error) {
+      console.error('[ERROR]: ', error)
+      return
+    }
+    console.log(`Server running on port ${PORT}!\n`);
+  })
+
+
+

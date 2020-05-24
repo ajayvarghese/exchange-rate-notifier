@@ -1,3 +1,4 @@
+const ENDPOINT = "https://notifier-app-server.herokuapp.com";
 export const URLS = {
-  FOREX: "http://localhost:3000/eur-to-inr",
+  FOREX: `${ENDPOINT}/eur-to-inr`,
 };
