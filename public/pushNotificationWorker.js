@@ -16,15 +16,19 @@ const urlB64ToUint8Array = (base64String) => {
 };
 
 const saveSubscription = async (subscription) => {
-  const SERVER_URL = `${API_ENDPOINT}/save-subscription`;
-  const response = await fetch(SERVER_URL, {
-    method: "post",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(subscription),
-  });
-  return response.json();
+  try {
+    const SERVER_URL = `${API_ENDPOINT}/save-subscription`;
+    const response = await fetch(SERVER_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(subscription),
+    });
+    return response.json();
+  } catch (e) {
+    console.error("[SW-Error]", e);
+  }
 };
 
 // During the installation phase, you'll usually want to cache static assets.
