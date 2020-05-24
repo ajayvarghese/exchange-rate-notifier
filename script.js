@@ -10,7 +10,7 @@ const checkSupport = () => {
 const registerServiceWorker = async () => {
   try {
     const swRegistration = await navigator.serviceWorker.register(
-      "/public/pushNotificationWorker.js"
+      "pushNotificationWorker.js"
     );
     console.log("Successfully registered push service worker", swRegistration);
     return swRegistration;
