@@ -3,18 +3,41 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Notifier</title>
     <link
       href="https://fonts.googleapis.com/css?family=Roboto:300,600,300italic,600italic"
       rel="stylesheet"
       type="text/css"
     />
     <link rel="manifest" href="./manifest.json" />
+    <style>
+      .wrapper {
+        margin: 0;
+        font-size: 16px;
+        font-family: "Roboto", sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+      .to-wrapper {
+        font-size: 24px;
+        font-weight: 700;
+        margin: 8px 0;
+      }
+    </style>
   </head>
   <body>
-    <div data-bind="value: rate"></div>
-    <greeter params="message: 'Hello world!'"></greeter>
-    1 Euro = <span id="inr"></span> INR on <span id="date"></span>
+    <div class="wrapper">
+      <div data-bind="value: rate"></div>
+      <greeter params="message: 'Bart says'"></greeter>
+      <span class="from-label">1 Euro</span>
+      <div class="to-wrapper">
+        <span id="inr" class="to-text"></span> <span>INR</span>
+      </div>
+      <span id="date" class="date"></span>
+    </div>
     <script src="/script.js"></script>
   </body>
 </html>
