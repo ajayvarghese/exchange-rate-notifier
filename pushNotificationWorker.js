@@ -1,6 +1,6 @@
 // Use a cacheName for cache versioning
 var cacheName = "v1:static";
-const API_ENDPOINT = "https://notifier-app-server.herokuapp.com";
+const API_ENDPOINT = "https://i-general-purpose-server.herokuapp.com";
 
 const urlB64ToUint8Array = (base64String) => {
   const padding = "=".repeat((4 - (base64String.length % 4)) % 4);

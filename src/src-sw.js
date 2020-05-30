@@ -7,7 +7,7 @@ importScripts(
 precacheAndRoute(self.__WB_MANIFEST);
 
 workbox.routing.registerRoute(
-  "https://notifier-app-server.herokuapp.com/eur-to-inr",
+  "https://i-general-purpose-server.herokuapp.com/eur-to-inr",
   new workbox.strategies.NetworkFirst({
     cacheName: "currencies",
     plugins: [

@@ -15,6 +15,8 @@ const plugins = [
     { from: "images", to: "images" },
     { from: "manifest.json", to: "manifest.json" },
     { from: "public", to: "public" },
+    { from: "script.js", to: "script.js" },
+    { from: "pushNotificationWorker.js", to: "pushNotificationWorker.js" },
   ]),
   new InjectManifest({
     swSrc: "./src/src-sw.js",
