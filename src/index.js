@@ -1,5 +1,6 @@
 import { URLS } from "./constants";
 import { fetchData } from "./request";
+import registerServiceWorkers from "./serviceWorkers";
 import "./model";
 
 async function init() {
@@ -9,5 +10,7 @@ async function init() {
   document.getElementById("date").textContent =
     date.getDate() + "." + date.getMonth() + "." + date.getFullYear();
 }
+
+registerServiceWorkers();
 
 window.onload = init;

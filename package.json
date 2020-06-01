@@ -7,8 +7,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "NODE_ENV=production webpack",
     "start": "NODE_ENV=development webpack-dev-server",
-    "start:server": "node server",
-    "heroku-postbuild": "npm i && node server/index.js",
     "serve": "npm run build && serve dist"
   },
   "author": "Ajay Varghese",
@@ -26,13 +24,8 @@
     "workbox-webpack-plugin": "^5.1.2"
   },
   "dependencies": {
-    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
-    "express": "^4.17.1",
     "html-loader": "^1.1.0",
-    "knockout": "^3.5.1",
-    "node-fetch": "^2.6.0",
-    "node-schedule": "^1.3.2",
-    "web-push": "^3.4.4"
+    "knockout": "^3.5.1"
   }
 }

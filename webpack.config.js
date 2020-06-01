@@ -7,20 +7,21 @@ const { InjectManifest } = require("workbox-webpack-plugin");
 
 const plugins = [
   new HtmlWebpackPlugin({
-    template: "template.html",
-    favicon: "favicon.ico",
+    template: "public/template.html",
+    favicon: "public/favicon.ico",
   }),
   new CleanWebpackPlugin(),
   new CopyPlugin([
     { from: "images", to: "images" },
-    { from: "manifest.json", to: "manifest.json" },
-    { from: "public", to: "public" },
-    { from: "script.js", to: "script.js" },
-    { from: "pushNotificationWorker.js", to: "pushNotificationWorker.js" },
+    { from: "public/manifest.json", to: "manifest.json" },
+    {
+      from: "src/serviceWorkers/pushNotificationWorker.js",
+      to: "pushNotificationWorker.js",
+    },
   ]),
   new InjectManifest({
-    swSrc: "./src/src-sw.js",
-    swDest: "sw.js",
+    swSrc: "./src/serviceWorkers/workboxWorker.js",
+    swDest: "workboxWorker.js",
   }),
   new webpack.DefinePlugin({
     PROD: JSON.stringify(process.env.NODE_ENV === "production"),
