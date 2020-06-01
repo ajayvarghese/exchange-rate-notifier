@@ -1,5 +1,3 @@
-import { serviceWorkers } from "./../constants";
-
 const checkSupport = () => {
   if (!("serviceWorker" in navigator)) {
     throw new Error("No Service Worker support!");
@@ -12,13 +10,13 @@ const checkSupport = () => {
 const registerServiceWorker = async () => {
   try {
     const swRegistration = await navigator.serviceWorker.register(
-      serviceWorker.PUSH_NOTIFICATION_WORKER
+      "serviceWorker.js"
     );
-    console.log("Successfully registered push service worker", swRegistration);
+    console.log("Successfully registered service worker", swRegistration);
     return swRegistration;
   } catch (e) {
     console.error(e);
-    throw new Error("Error whilst registering Push Service worker ");
+    throw new Error("Error whilst registering Service worker ");
   }
 };
 
@@ -32,23 +30,12 @@ const requestNotificationPermission = async () => {
   }
 };
 
-const registerWorkboxWorker = () => {
-  try {
-    navigator.serviceWorker.register("/" + serviceWorker.WORKBOX_WORKER);
-    console.log("Successfully registered Workbox worker", swRegistration);
-  } catch (e) {
-    console.error(e);
-    throw new Error("Error whilst registering Workbox worker ");
-  }
-};
-
 const registerServiceWorkers = () => {
   if ("serviceWorker" in navigator) {
     checkSupport();
     window.addEventListener("load", async () => {
-      registerWorkboxWorker();
-      const swRegistration = await registerServiceWorker();
-      const permission = await requestNotificationPermission();
+      registerServiceWorker();
+      await requestNotificationPermission();
     });
   } else {
     console.error("Service Worker not supported");

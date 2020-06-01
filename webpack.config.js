@@ -14,14 +14,10 @@ const plugins = [
   new CopyPlugin([
     { from: "images", to: "images" },
     { from: "public/manifest.json", to: "manifest.json" },
-    {
-      from: "src/serviceWorkers/pushNotificationWorker.js",
-      to: "pushNotificationWorker.js",
-    },
   ]),
   new InjectManifest({
-    swSrc: "./src/serviceWorkers/workboxWorker.js",
-    swDest: "workboxWorker.js",
+    swSrc: "./public/serviceWorker.js",
+    swDest: "serviceWorker.js",
   }),
   new webpack.DefinePlugin({
     PROD: JSON.stringify(process.env.NODE_ENV === "production"),

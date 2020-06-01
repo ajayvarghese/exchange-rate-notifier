@@ -1,6 +1,6 @@
 import { URLS } from "./constants";
 import { fetchData } from "./request";
-import registerServiceWorkers from "./serviceWorkers";
+import registerServiceWorker from "./serviceWorker";
 import "./model";
 
 async function init() {
@@ -11,6 +11,6 @@ async function init() {
     date.getDate() + "." + date.getMonth() + "." + date.getFullYear();
 }
 
-registerServiceWorkers();
+registerServiceWorker();
 
 window.onload = init;
